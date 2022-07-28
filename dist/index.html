@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pokemon Team Builder</title>
+<script defer src="bundle.js"></script></head>
+<body>
+    <div class="container">
+        <div class="user-input">
+            <form id="addForm">
+                <input type="text" name="name" 
+                id="pokemonName" placeholder="Pokemon Name"
+                required>
+                <label>
+                    <input type="radio" name="gender" 
+                    class="pokemonGender" value="male" 
+                    checked>
+                    Male
+                </label>
+                <label>
+                    <input type="radio" name="gender" 
+                    class="pokemonGender" value="male">
+                    Female
+                </label>
+                <button type="submit" id="addBtn">Add</button>
+            </form>
+        </div>
+        <div class="content-display" id="contentDisplay">
+            <div class="team" id="team">
+            </div>
+        </div>
+    </div>
+</body>
+</html>
