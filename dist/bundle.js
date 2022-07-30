@@ -18033,7 +18033,7 @@ const updatePerson = (e) => {
     const person = new _modules_person__WEBPACK_IMPORTED_MODULE_2__.Person(personName, personGender);
 
     team.update(Number.parseInt(personEntryNumber) - 1, person); 
-    updatePersonCard(personCard, _modules_person__WEBPACK_IMPORTED_MODULE_2__.Person);
+    updatePersonCard(personCard, person);
 }
 
 const cancelUpdate = (e) => {
