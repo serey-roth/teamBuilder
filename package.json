@@ -1,6 +1,6 @@
 {
   "name": "pokedex",
-  "description": "A Pokemon team builder that showcases basic CRUD operations.",
+  "description": "A team builder that showcases basic CRUD operations.",
   "version": "1.0.0",
   "main": "index.js",
   "dependencies": {
@@ -100,12 +100,12 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/serey-roth/pokedex.git"
+    "url": "git+https://github.com/serey-roth/teamBuilder.git"
   },
   "author": "Serey Roth",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/serey-roth/pokedex/issues"
+    "url": "https://github.com/serey-roth/teamBuilder/issues"
   },
-  "homepage": "https://github.com/serey-roth/pokedex#readme"
+  "homepage": "https://github.com/serey-roth/teamBuilder#readme"
 }
