@@ -1,7 +1,7 @@
 import './style.css';
 import * as ui from './modules/ui';
-import { Pokemon } from './modules/pokemon';
-import { Team } from './modules/pokemonTeam';
+import { Person } from './modules/person';
+import { Team } from './modules/team';
 
 const team = new Team();
 
@@ -18,14 +18,14 @@ const resetInput = () => {
     ui.gender[0].checked = true;
 }
 
-const addPokemon = (e) => {
+const addPerson = (e) => {
     e.preventDefault();
 
     const input = getInput();
-    const pokemon = new Pokemon(input.name, input.gender);
+    const person = new Person(input.name, input.gender);
 
-    team.add(pokemon);
-    updateTeam(team.pokemonList)
+    team.add(person);
+    updateTeam(team.personList)
 
     resetInput();
 }
@@ -35,51 +35,51 @@ const getField = (str) => {
 
 }
 
-const deletePokemon = (e) => {
-    const pokemonCard = e.target.parentNode;
-    const pokemonName = pokemonCard.childNodes[0].value;
-    const pokemonGender = pokemonCard.childNodes[1].value;
-    team.delete(new Pokemon(getField(pokemonName), 
-    getField(pokemonGender)));
-    updateTeam(team.pokemonList);
+const deletePerson = (e) => {
+    const personCard = e.target.parentNode;
+    const personName = personCard.childNodes[0].value;
+    const personGender = personCard.childNodes[1].value;
+    team.delete(new Person(getField(personName), 
+    getField(personGender)));
+    updateTeam(team.personList);
 }
 
-const editPokemon = (e) => {
-    const pokemonCard = e.target.parentNode;
-    const pokemonName = pokemonCard.childNodes[0];
-    const pokemonGender = pokemonCard.childNodes[1];
+const editPerson = (e) => {
+    const personCard = e.target.parentNode;
+    const personName = personCard.childNodes[0];
+    const personGender = personCard.childNodes[1];
 
-    pokemonName.value = getField(pokemonName.value);
-    pokemonGender.value = getField(pokemonGender.value);
+    personName.value = getField(personName.value);
+    personGender.value = getField(personGender.value);
 
-    activateEditPanel(pokemonCard);
+    activateEditPanel(personCard);
 }
 
-const updatePokemon = (e) => {
-    const pokemonCard = e.target.parentNode;
-    const pokemonName = pokemonCard.childNodes[0].value;
-    const pokemonEntryNumber = pokemonCard.childNodes[8].textContent;
-    let pokemonGender = 'male';
+const updatePerson = (e) => {
+    const personCard = e.target.parentNode;
+    const personName = personCard.childNodes[0].value;
+    const personEntryNumber = personCard.childNodes[8].textContent;
+    let personGender = 'male';
 
-    if (pokemonCard.childNodes[3].childNodes[0].checked) {
-        pokemonGender = 'female';
+    if (personCard.childNodes[3].childNodes[0].checked) {
+        personGender = 'female';
     }
 
-    const pokemon = new Pokemon(pokemonName, pokemonGender);
+    const person = new Person(personName, personGender);
 
-    team.update(Number.parseInt(pokemonEntryNumber) - 1, pokemon); 
-    updatePokemonCard(pokemonCard, pokemon);
+    team.update(Number.parseInt(personEntryNumber) - 1, person); 
+    updatePersonCard(personCard, Person);
 }
 
 const cancelUpdate = (e) => {
-    const pokemonCard = e.target.parentNode;
-    const pokemonName = pokemonCard.childNodes[0];
-    const pokemonGender = pokemonCard.childNodes[1];
+    const personCard = e.target.parentNode;
+    const personName = personCard.childNodes[0];
+    const personGender = personCard.childNodes[1];
 
-    pokemonName.value = `Name: ${pokemonName.value}`;
-    pokemonGender.value =  `Gender: ${pokemonGender.value}`;
+    personName.value = `Name: ${personName.value}`;
+    personGender.value =  `Gender: ${personGender.value}`;
 
-    deactivateEditPanel(pokemonCard);
+    deactivateEditPanel(personCard);
 }
 
 const activateEditPanel = (div) => {
@@ -104,33 +104,32 @@ const deactivateEditPanel = (div) => {
     div.childNodes[7].style.display = 'none';
 }
 
-const updatePokemonCard = (div, pokemon) => {
-    div.childNodes[0].value = `Name: ${pokemon.name}`;
-    div.childNodes[1].value = `Gender: ${pokemon.gender}`;
+const updatePersonCard = (div, person) => {
+    div.childNodes[0].value = `Name: ${person.name}`;
+    div.childNodes[1].value = `Gender: ${person.gender}`;
 
     deactivateEditPanel(div);
 }
 
 const updateTeam = (list) => {
     ui.team.innerHTML = "";
-    for (let pokemon of list) {
-        createPokemonCard(pokemon);
+    for (let person of list) {
+        createPersonCard(person);
     }
 }
 
-const createPokemonCard = (pokemon) => {
+const createPersonCard = (person) => {
     const div = document.createElement("div");
-    div.classList.add("pokemon");
     
     const name = document.createElement("input");
     name.type = "text"
     name.style.pointerEvents = 'none';
-    name.value = `Name: ${pokemon.name}`;
+    name.value = `Name: ${person.name}`;
 
     const gender = document.createElement("input");
     gender.type = "text"
     gender.style.pointerEvents = 'none';
-    gender.value = `Gender: ${pokemon.gender}`;
+    gender.value = `Gender: ${person.gender}`;
 
     const spanMale = document.createElement("span");
     spanMale.style.display = "none";
@@ -164,25 +163,25 @@ const createPokemonCard = (pokemon) => {
 
     const editBtn = document.createElement("button");
     editBtn.textContent = "Edit";
-    editBtn.onclick = editPokemon;
+    editBtn.onclick = editPerson;
 
     const deleteBtn = document.createElement("button");
     deleteBtn.textContent = "Delete";
-    deleteBtn.onclick = deletePokemon;
+    deleteBtn.onclick = deletePerson;
 
     const doneBtn = document.createElement("button");
     doneBtn.textContent = "Done";
     doneBtn.style.display = 'none';
-    doneBtn.onclick = updatePokemon;
+    doneBtn.onclick = updatePerson;
 
     const cancelBtn = document.createElement("button");
     cancelBtn.textContent = "Cancel";
     cancelBtn.style.display = 'none';
     cancelBtn.onclick = cancelUpdate;
 
-    const pokemonEntryNumber = document.createElement("p");
-    pokemonEntryNumber.textContent = `${team.getCount()}`;
-    pokemonEntryNumber.style.display="none";
+    const personEntryNumber = document.createElement("p");
+    personEntryNumber.textContent = `${team.getCount()}`;
+    personEntryNumber.style.display="none";
     
     div.appendChild(name);
     div.appendChild(gender);
@@ -192,11 +191,11 @@ const createPokemonCard = (pokemon) => {
     div.appendChild(deleteBtn);
     div.appendChild(doneBtn);
     div.appendChild(cancelBtn);
-    div.appendChild(pokemonEntryNumber);
+    div.appendChild(personEntryNumber);
 
     ui.team.appendChild(div);
 }
 
 const initialize = (() => {
-    ui.addForm.onsubmit = addPokemon;
+    ui.addForm.onsubmit = addPerson;
 })();
