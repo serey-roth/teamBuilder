@@ -120,6 +120,7 @@ const updateTeam = (list) => {
 
 const createPersonCard = (person) => {
     const div = document.createElement("div");
+    div.classList.add('person');
     
     const name = document.createElement("input");
     name.type = "text"
