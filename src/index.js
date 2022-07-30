@@ -68,7 +68,7 @@ const updatePerson = (e) => {
     const person = new Person(personName, personGender);
 
     team.update(Number.parseInt(personEntryNumber) - 1, person); 
-    updatePersonCard(personCard, Person);
+    updatePersonCard(personCard, person);
 }
 
 const cancelUpdate = (e) => {
