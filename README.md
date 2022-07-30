@@ -6,3 +6,6 @@ Each team member has a name and a gender (more infomation will be added in later
 ## Tools
 I compartmentalized script files into modules for better readability as well as easier modifications in later updates. I used Sass to write the styling since I've wanted to practice my skills with the tool.
 
+## Future Updates
+* Incorporate user authentication, indexed based database, form validation, APIs(?)
+* Make the UI more user friendly and aesthetically pleasing
