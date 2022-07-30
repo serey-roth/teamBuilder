@@ -1,5 +1,5 @@
 {
-  "name": "pokedex",
+  "name": "teambuilder",
   "description": "A team builder that showcases basic CRUD operations.",
   "version": "1.0.0",
   "main": "index.js",
